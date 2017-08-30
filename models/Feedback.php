@@ -71,7 +71,6 @@ class Feedback extends ActiveRecord
             [['name', 'text', 'status'], 'required'],
             [['status', 'category_id'], 'integer'],
             [['email'], 'email'],
-            [['status'], 'default', 'value' => self::STATUS_NEW],
             [['text', 'answer'], 'string'],
             [['name', 'theme', 'phone', 'email'], 'string', 'max' => 255],
             [['create_time', 'update_time', 'answer_time'], 'safe'],
@@ -105,6 +104,10 @@ class Feedback extends ActiveRecord
     public function beforeValidate()
     {
         $this->phone = preg_replace('/[^\d]/i', '', $this->phone);
+
+        if(null === $this->status) {
+            $this->status = self::STATUS_NEW;
+        }
 
         return parent::beforeValidate();
     }

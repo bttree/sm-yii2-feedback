@@ -38,6 +38,11 @@ class FeedbackController extends Controller
                         'allow'   => true,
                         'roles'   => ['smyfeedback.view'],
                     ],
+                    [
+                        'actions' => ['send-feedback'],
+                        'allow'   => true,
+                        'roles'   => ['?', '@'],
+                    ]
                 ],
             ],
             'verbs'  => [
@@ -47,6 +52,57 @@ class FeedbackController extends Controller
                 ],
             ],
         ];
+    }
+
+    /**
+     * @return array|Response
+     * @throws NotFoundHttpException
+     */
+    public function actionSendFeedback()
+    {
+        $request = Yii::$app->request;
+        if (!$request->isPost) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+        $post = Yii::$app->request->post();
+
+        $model = new Feedback();
+        $model->load($post);
+
+        if ($request->isAjax) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            if (!empty($post['OtherFields'])) {
+                foreach ($post['OtherFields'] as $label => $value) {
+                    $model->text .= "<br> <p>$label: $value</p>";
+                }
+            }
+        }
+
+        if ($model->save()) {
+            $message = Yii::t('smy.feedback', 'Message sent successfully!');
+            if ($request->isAjax) {
+                return [
+                    'result'  => true,
+                    'message' => $message
+                ];
+            } else {
+                Yii::$app->getSession()->setFlash('success', $message);
+
+                return $this->redirect($request->referrer);
+            }
+        } else {
+            $message = Yii::t('smy.feedback', 'Error sending message!');
+            if ($request->isAjax) {
+                return [
+                    'result'  => false,
+                    'message' => $message
+                ];
+            } else {
+                Yii::$app->getSession()->setFlash('error', $message);
+
+                return $this->redirect($request->referrer);
+            }
+        }
     }
 
     /**
