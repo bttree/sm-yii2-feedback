@@ -54,6 +54,12 @@ class FeedbackCategory extends ActiveRecord
         return $this->hasMany(Feedback::className(), ['category_id' => 'id']);
     }
 
+
+    public function getChilds()
+    {
+        return $this->hasMany(FeedbackCategory::className(), ['parent_id' => 'id']);
+    }
+
     /**
      * @param integer|null $id
      * @return array
