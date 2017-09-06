@@ -11,6 +11,7 @@ use yii\helpers\ArrayHelper;
  *
  * @property integer    $id
  * @property string     $name
+ * @property integer    $parent_id
  *
  * @property Feedback[] $feedbacks
  */
@@ -32,6 +33,7 @@ class FeedbackCategory extends ActiveRecord
         return [
             [['name'], 'required'],
             [['name'], 'string', 'max' => 255],
+            [['parent_id'], 'integer'],
         ];
     }
 
@@ -41,8 +43,9 @@ class FeedbackCategory extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'   => Yii::t('smy.feedback', 'ID'),
-            'name' => Yii::t('smy.feedback', 'Name'),
+            'id'        => Yii::t('smy.feedback', 'ID'),
+            'name'      => Yii::t('smy.feedback', 'Name'),
+            'parent_id' => Yii::t('smy.feedback', 'Parent ID'),
         ];
     }
 

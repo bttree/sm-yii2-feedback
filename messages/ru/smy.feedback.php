@@ -50,4 +50,6 @@ return [
     'Seo Keywords'    => 'Seo ключевые слова',
     'Seo Title'       => 'Seo заголово',
     'Source'          => 'Файл',
+    'Parent ID'       => 'Родительская категория',
+
 ];
