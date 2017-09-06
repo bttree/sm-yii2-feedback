@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use bttree\smyfeedback\models\FeedbackCategory;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
@@ -46,7 +47,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                  [
                                      'class'    => 'yii\grid\ActionColumn',
-                                     'template' => '{update} {delete}'
+                                     'template' => '{update} {delete}',
+                                     'buttons'  => [
+                                         'list' => function ($url, $model, $key) {
+                                             return Html::a(
+                                                 Html::tag('span',
+                                                     '',
+                                                     ['class' => 'glyphicon glyphicon-list']),
+                                                 Url::to([
+                                                     '/smyfeedback/feedback/index',
+                                                     'FeedbackSearch[category_id]' => $model->id
+                                                 ]));
+                                         }
+                                     ],
                                  ],
                              ],
                          ]); ?>

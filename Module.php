@@ -13,6 +13,7 @@ class Module extends \yii\base\Module
      * @inheritdoc
      */
     public $controllerNamespace = 'bttree\smyfeedback\controllers';
+    public $email_origin = 'info@answer.ru';
 
     /**
      * @inheritdoc
@@ -25,7 +26,7 @@ class Module extends \yii\base\Module
             Yii::$app->i18n->translations['smy.feedback'] = [
                 'class'          => 'yii\i18n\PhpMessageSource',
                 'sourceLanguage' => 'ru',
-                'basePath'       => '@common/modules/bttree/smyfeedback/messages'
+                'basePath'       => '@bttree/smyfeedback/messages'
             ];
         }
     }

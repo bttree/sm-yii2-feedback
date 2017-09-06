@@ -12,7 +12,18 @@ use bttree\smywidgets\widgets\TextEditorWidget;
 
 <div class="feedback-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['enableClientValidation'=>false]); ?>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group field-feedback-send required">
+                <input id="sendMail" type="checkbox" name="send_mail">
+                <label for="sendMail"><?= Yii::t('smy.feedback', 'Send mail');?></label>
+            </div>
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="col-sm-6">

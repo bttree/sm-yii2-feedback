@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
+use bttree\smyfeedback\models\FeedbackSearch;
 
 /**
  * FeedbackController implements the CRUD actions for Feedback model.
@@ -112,9 +113,8 @@ class FeedbackController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-                                                   'query' => Feedback::find(),
-                                               ]);
+        $searchModel  = new FeedbackSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index',
                              [
@@ -149,13 +149,19 @@ class FeedbackController extends Controller
     {
         $model = $this->findModel($id);
 
+        if (Yii::$app->request->isPost && Yii::$app->request->post('send_mail')){
+            $model->setScenario('sendMail');
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if(Yii::$app->request->post('send_mail')){
+                $this->sendMail($model);
+            }
             return $this->redirect(['index']);
         } else {
-            return $this->render('update',
-                                 [
-                                     'model' => $model,
-                                 ]);
+
+            return $this->render('update', ['model' => $model]);
+
         }
     }
 
@@ -186,5 +192,16 @@ class FeedbackController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+
+    private function sendMail($model)
+    {
+        Yii::$app->mailer->compose()
+            ->setFrom($this->module->email_origin)
+            ->setTo($model->email)
+            ->setSubject($model->theme)
+            ->setTextBody($model->answer)
+            ->send();
     }
 }

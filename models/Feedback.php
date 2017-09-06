@@ -69,6 +69,7 @@ class Feedback extends ActiveRecord
     {
         return [
             [['name', 'text', 'status'], 'required'],
+            [['email', 'answer'], 'required', 'on' => 'sendMail'],
             [['status', 'category_id'], 'integer'],
             [['email'], 'email'],
             [['text', 'answer'], 'string'],
