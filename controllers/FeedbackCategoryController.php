@@ -9,6 +9,9 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use bttree\smyfeedback\models\FeedbackCategorySearch;
+use yii\helpers\ArrayHelper;
+
 
 /**
  * FeedbackCategoryController implements the CRUD actions for FeedbackCategory model.
@@ -55,14 +58,17 @@ class FeedbackCategoryController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-                                                   'query' => FeedbackCategory::find(),
-                                               ]);
+        $searchModel = new FeedbackCategorySearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $arrayParents = array_merge([Yii::t('smy.feedback', 'No parent')], ArrayHelper::map(FeedbackCategory::find()->all(), 'id', 'name'));
 
         return $this->render('index',
-                             [
-                                 'dataProvider' => $dataProvider,
-                             ]);
+            [
+                'dataProvider' => $dataProvider,
+                'searchModel' => $searchModel,
+                'arrayParents' => $arrayParents,
+            ]);
     }
 
     /**

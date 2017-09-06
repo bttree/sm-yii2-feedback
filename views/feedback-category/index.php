@@ -1,7 +1,11 @@
 <?php
 
+use Yii;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use bttree\smyfeedback\models\FeedbackCategory;
+use yii\helpers\ArrayHelper;
+
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -18,11 +22,27 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <?= GridView::widget([
                              'dataProvider' => $dataProvider,
+                             'filterModel' => $searchModel,
                              'columns'      => [
                                  ['class' => 'yii\grid\SerialColumn'],
 
                                  'id',
                                  'name',
+                                 [
+                                     'attribute' => 'parent_id',
+                                     'value' => function ($data) {
+                                         if(isset($data->parent)){
+                                             return $data->parent->name;
+                                         }
+                                         return '-';
+                                     },
+                                     'filter'    => Html::activeDropDownList(
+                                         $searchModel,
+                                         'parent_id',
+                                         $arrayParents,
+                                         ['class' => 'form-control', 'prompt' => Yii::t('smy.feedback', 'All')]
+                                     ),
+                                 ],
 
                                  [
                                      'class'    => 'yii\grid\ActionColumn',
