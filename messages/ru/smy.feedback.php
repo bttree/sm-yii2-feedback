@@ -59,5 +59,7 @@ return [
     'Feedback'        => 'Обратная связь',
     'Feedback Categories' => 'Категории обратной связи',
     'Create Feedback category' => 'Создать категорию обратной связи',
+    'Update Feedback: ' => 'Редактировать обратную связь',
+    'Update Feedback Category: ' => 'Редактировать категорию обратной связи',
 
 ];
