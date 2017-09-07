@@ -6,7 +6,7 @@ use bttree\smyfeedback\models\FeedbackCategory;
 /**
  * Class m170904_132030_add_phone_to_profile
  */
-class m170906_132030_add_mail_to_feedback_category extends Migration
+class m170904_132040_add_mail_to_feedback_category extends Migration
 {
     public function safeUp()
     {

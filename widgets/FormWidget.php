@@ -39,6 +39,8 @@ class FormWidget extends Widget
      * @var boolean $ajax
      */
     public $ajax = true;
+    
+    public $category_id = null;
 
 
     /**
@@ -70,6 +72,7 @@ class FormWidget extends Widget
         }
 
         $feedback = new Feedback();
+        $feedback->category_id = $this->category_id;
 
         return $this->render($this->view,
                              [

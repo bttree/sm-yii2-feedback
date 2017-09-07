@@ -11,7 +11,6 @@ $this->title                   = Yii::t('smy.feedback',
                                             'modelClass' => 'Feedback Category',
                                         ]) . $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('smy.feedback', 'Feedback Categories'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('smy.feedback', 'Update');
 ?>
 <div class="feedback-category-update">

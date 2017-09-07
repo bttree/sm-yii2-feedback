@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('smy.feedback', 'Create Feedback Category'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('smy.feedback', 'Create Feedback category'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
                              'dataProvider' => $dataProvider,
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                  [
                                      'class'    => 'yii\grid\ActionColumn',
-                                     'template' => '{update} {delete}',
+                                     'template' => '{list} {update} {delete}',
                                      'buttons'  => [
                                          'list' => function ($url, $model, $key) {
                                              return Html::a(

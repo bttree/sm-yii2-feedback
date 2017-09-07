@@ -20,9 +20,13 @@ use yii\helpers\Html;
                                         'options'                => ['class' => trim($formSelector, '.')]
                                     ]); ?>
 
+
+
+
     <div class="row">
         <div class="col-sm-12">
             <?= $form->field($feedback, 'name')->textInput(['maxlength' => true, 'required' => true]) ?>
+            <?= $form->field($feedback, 'category_id')->hiddenInput()->label(false) ?>
         </div>
     </div>
 

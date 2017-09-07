@@ -8,8 +8,7 @@ use yii\helpers\Html;
 $this->title = Yii::t('smy.feedback', 'Update {modelClass}: ', [
     'modelClass' => 'Feedback',
 ]) . $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('smy.feedback', 'Feedbacks'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('smy.feedback', 'Feedback'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = Yii::t('smy.feedback', 'Update');
 ?>
 <div class="feedback-update">

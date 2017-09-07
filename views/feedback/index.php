@@ -15,6 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('smy.feedback', 'Create Feedback'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('smy.feedback', 'Feedback Categories'),
+            ['/smyfeedback/feedback-category/index'],
+            ['class' => 'btn btn-info']) ?>
     </p>
     <?= GridView::widget([
                              'dataProvider' => $dataProvider,

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model bttree\smyfeedback\models\FeedbackCategory */
 
-$this->title                   = Yii::t('smy.feedback', 'Create Feedback Category');
+$this->title                   = Yii::t('smy.feedback', 'Create Feedback category');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('smy.feedback', 'Feedback Categories'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

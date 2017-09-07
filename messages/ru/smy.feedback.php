@@ -53,6 +53,11 @@ return [
     'Parent ID'       => 'Родительская категория',
     'All'             => 'Все',
     'No parent'       => 'Нет родителя',
+    'Send'            => 'Послать',
     'Send mail'       => 'Отослать ответ',
+    'Create Feedback' => 'Создать обратную связь',
+    'Feedback'        => 'Обратная связь',
+    'Feedback Categories' => 'Категории обратной связи',
+    'Create Feedback category' => 'Создать категорию обратной связи',
 
 ];
