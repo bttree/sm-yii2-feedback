@@ -45,6 +45,12 @@ return [
     'Slug'               => 'Слаг',
     'Create Time'        => 'Время создания',
     'Update Time'        => 'Время обновления',
+    'Phone'              => 'Телефон',
+    'Theme'              => 'Тема',
+    'Text'               => 'Текст',
+    'Answer'             => 'Ответ',
+    'Answer time'        => 'Время ответа',
+
 
     'Seo Description' => 'Seo описание',
     'Seo Keywords'    => 'Seo ключевые слова',
@@ -59,7 +65,12 @@ return [
     'Feedback'        => 'Обратная связь',
     'Feedback Categories' => 'Категории обратной связи',
     'Create Feedback category' => 'Создать категорию обратной связи',
-    'Update Feedback: ' => 'Редактировать обратную связь',
-    'Update Feedback Category: ' => 'Редактировать категорию обратной связи',
+    'Update Feedback: ' => 'Редактировать обратную связь: ',
+    'Update Feedback Category: ' => 'Редактировать категорию обратной связи: ',
+
+    'New'             => 'Новая',
+    'Process'         => 'Просмотрена',
+    'Finished'        => 'Обработана',
+    'Answer sent'     => 'Ответ послан',
 
 ];

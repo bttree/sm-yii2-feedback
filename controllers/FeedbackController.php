@@ -119,6 +119,7 @@ class FeedbackController extends Controller
         return $this->render('index',
                              [
                                  'dataProvider' => $dataProvider,
+                                 'searchModel' => $searchModel,
                              ]);
     }
 

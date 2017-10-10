@@ -70,6 +70,7 @@ class Feedback extends ActiveRecord
         return [
             [['name', 'text', 'status'], 'required'],
             [['email', 'answer'], 'required', 'on' => 'sendMail'],
+            [['status'],'default','value'=> self::STATUS_NEW],
             [['status', 'category_id'], 'integer'],
             [['email'], 'email'],
             [['text', 'answer'], 'string'],
@@ -105,10 +106,6 @@ class Feedback extends ActiveRecord
     public function beforeValidate()
     {
         $this->phone = preg_replace('/[^\d]/i', '', $this->phone);
-
-        if(null === $this->status) {
-            $this->status = self::STATUS_NEW;
-        }
 
         return parent::beforeValidate();
     }

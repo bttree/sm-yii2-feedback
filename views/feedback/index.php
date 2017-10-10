@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title                   = Yii::t('smy.feedback', 'Feedbacks');
+$this->title                   = Yii::t('smy.feedback', 'Feedback');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="feedback-index">
@@ -21,11 +21,25 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <?= GridView::widget([
                              'dataProvider' => $dataProvider,
+                             'filterModel'  => $searchModel,
                              'columns'      => [
                                  ['class' => 'yii\grid\SerialColumn'],
 
                                  'id',
                                  'name',
+                                 [
+                                     'attribute' => 'status',
+                                     'value' => function($model){
+                                         return isset($model->status) ? $model->getConstArray('status')[$model->status] : '-';
+                                     },
+                                     'filter'    => Html::activeDropDownList(
+                                         $searchModel,
+                                         'status',
+                                         $searchModel->getConstArray('status'),
+                                         ['class' => 'form-control', 'prompt' => '---']
+                                     )
+
+                                 ],
                                  'email:email',
                                  'phone',
                                  'theme',
